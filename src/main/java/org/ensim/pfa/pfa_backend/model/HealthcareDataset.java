@@ -38,7 +38,7 @@ public class HealthcareDataset {
     @Column(name = "gender")
     private String gender;
 
-    @Column(name = "Admission Type")
+    @Column(name = "\"Admission Type\"")
     private String admissionType;
 
     @Column(name = "Date of Admission")
