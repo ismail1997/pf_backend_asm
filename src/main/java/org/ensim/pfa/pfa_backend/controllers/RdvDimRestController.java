@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDate;
+
 @RestController
 @RequestMapping("/rdv_dim")
 public class RdvDimRestController {
@@ -22,5 +24,12 @@ public class RdvDimRestController {
     public Page<RdvDim> getAll(@RequestParam(name = "page", defaultValue = "0") int page,
                                @RequestParam(name = "size", defaultValue = "20") int size) {
         return rdvDimService.getAll(page, size);
+    }
+
+    @GetMapping("/byYear")
+    public Page<RdvDim> getByYear(@RequestParam int year,
+                                  @RequestParam(name = "page", defaultValue = "0") int page,
+                                  @RequestParam(name = "size", defaultValue = "20") int size) {
+        return rdvDimService.getRdvDimsByYear(year, page, size);
     }
 }
