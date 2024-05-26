@@ -4,6 +4,7 @@ import org.ensim.pfa.pfa_backend.model.views.EmergencyVisitsOverTime;
 import org.ensim.pfa.pfa_backend.model.views.EmergencyVisitsPerHospital;
 import org.ensim.pfa.pfa_backend.services.views_services.EmergencyVisitsPerHospitalService;
 import org.springframework.data.domain.Page;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,6 +21,7 @@ public class EmergencyVisitsPerHospitalController {
     }
 
     @GetMapping
+    @PreAuthorize("hasAnyAuthority({'SCOPE_GESTIONNAIRE','SCOPE_ADMIN'})")
     public Page<EmergencyVisitsPerHospital> getAllEmergencyVisitsPerHospital(@RequestParam(name = "page", defaultValue = "0") int page,
                                                                           @RequestParam(name = "size", defaultValue = "20") int size) {
         return this.emergencyVisitsPerHospitalService.getAllEmergencyVisitesPerHospital(page, size);
